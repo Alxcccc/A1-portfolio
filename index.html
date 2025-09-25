@@ -1,34 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parchment Background</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <title>A1 — Placeholder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Georgia, serif;
-      background-image: url("a1.png");
-      background-size: cover;       /* stretch to fill */
-      background-repeat: no-repeat; /* avoid tiling */
-      background-attachment: fixed; /* stays in place while scrolling */
-      color: #2e1b0f;               /* dark brown text for readability */
+    :root{
+      --bg:#050506; /* very dark */
+      --accent:#ff3b67; /* hot pink */
+      --accent2:#00ffb3; /* neon green */
+      --muted:#bdbdbd;
+    }
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+    body{
+      background: radial-gradient(1200px 600px at 10% 20%, rgba(255,59,103,0.06), transparent),
+                  radial-gradient(1000px 500px at 90% 80%, rgba(0,255,179,0.03), transparent),
+                  linear-gradient(180deg,var(--bg),#070708 60%);
+      color:white;display:flex;align-items:center;justify-content:center;min-height:100%;overflow:hidden;
+    }
+    /* gritty texture */
+    .grain{pointer-events:none;position:fixed;inset:0;opacity:.06;background-image:radial-gradient(rgba(0,0,0,.02) 1px, transparent 1px);background-size:3px 3px;mix-blend-mode:overlay}
+
+    .center{
+      text-align:center;z-index:2;padding:2rem;backdrop-filter: blur(2px);
     }
 
-    .content {
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-      background-color: rgba(255, 255, 255, 0.7); /* translucent panel */
-      border-radius: 12px;
+    .logo{
+      font-family:Anton, sans-serif;font-weight:700;letter-spacing:0.02em;font-size:clamp(48px,18vw,180px);line-height:0.9;position:relative;display:inline-block;
+      padding:0.2em 0.5em;border-radius:12px;
+      transform:translateZ(0);
+    }
+
+    /* neon/glow & split-color */
+    .logo .main{color:#fff;text-shadow:0 6px 28px rgba(0,0,0,.6);position:relative}
+    .logo::before, .logo::after{
+      content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;
+      mix-blend-mode:screen;filter:blur(14px);opacity:.9;border-radius:12px;
+    }
+    .logo::before{color:var(--accent);transform:translate(6px,-6px) skewX(-6deg);}
+    .logo::after{color:var(--accent2);transform:translate(-6px,6px) skewX(6deg);}
+
+    /* glitch animation */
+    @keyframes glitch{
+      0%{clip-path:inset(0 0 0 0)}
+      10%{clip-path:inset(0 0 60% 0)}
+      20%{clip-path:inset(30% 0 0 0)}
+      30%{clip-path:inset(0 40% 0 0)}
+      40%{clip-path:inset(10% 0 30% 0)}
+      50%{clip-path:inset(0 0 0 0)}
+      100%{clip-path:inset(0 0 0 0)}
+    }
+    .logo.glitch::before, .logo.glitch::after{animation:glitch 2.5s infinite linear}
+
+    /* small subtitle */
+    .sub{margin-top:1.1rem;font-size:clamp(12px,2.6vw,18px);color:var(--muted);letter-spacing:0.06em}
+
+    /* footer note */
+    .meta{position:fixed;left:16px;bottom:12px;color:rgba(255,255,255,.45);font-size:12px;font-family:Inter, sans-serif}
+
+    /* subtle vinyl strip at top like a drill mixtape */
+    .strip{position:fixed;top:0;left:-30%;right:-30%;height:200px;background:repeating-linear-gradient(45deg, rgba(0,0,0,.06) 0 6px, rgba(255,255,255,0) 6px 12px);transform:rotate(-6deg);opacity:.12}
+
+    /* responsive tweaks */
+    @media (max-width:520px){
+      .logo{padding:0.08em 0.25em;border-radius:8px}
     }
   </style>
 </head>
 <body>
-  <div class="content">
-    <h1>Welcome to My Website</h1>
-    <p>This page uses the parchment background you liked!</p>
+  <div class="strip"></div>
+  <div class="grain" aria-hidden></div>
+  <div class="center">
+    <div class="logo glitch" data-text="A1"><span class="main">A1</span></div>
+    <div class="sub">Alec • AKA A1</div>
   </div>
+
+
+  <!-- small accessibility and theme script -->
+  <script>
+    // prefers-reduced-motion respect
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.logo.glitch::before');
+      // remove glitch effect by removing class
+      document.querySelectorAll('.logo').forEach(el=>el.classList.remove('glitch'));
+    }
+  </script>
 </body>
 </html>
