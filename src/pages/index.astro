@@ -1,0 +1,331 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    title: 'Expense Tracker',
+    descriptor: 'API / hexagonal architecture',
+    description: 'A finance system shaped around clear boundaries between domain rules and persistence.',
+    focus: 'domain boundaries / persistence',
+    diagram: ['request', 'application', 'domain', 'storage'],
+    technologies: ['FastAPI', 'MySQL', 'Python'],
+    year: '2025',
+    url: 'https://github.com/Alxcccc/Expense-Tracker-Api',
+    featured: true,
+  },
+  {
+    title: 'Blogging Platform',
+    descriptor: 'REST API / publishing + search',
+    description: 'A publishing system for categorizing, searching, and maintaining a personal archive of posts.',
+    focus: 'content modeling / search',
+    technologies: ['FastAPI', 'MySQL', 'Python'],
+    year: '2025',
+    url: 'https://github.com/Alxcccc/Blogging-Platform-API',
+  },
+  {
+    title: 'Todo List',
+    descriptor: 'Authentication / scoped CRUD',
+    description: 'Authenticated task management with token access, hashed passwords, and user-scoped data.',
+    focus: 'auth / ownership / access',
+    technologies: ['FastAPI', 'SQLAlchemy', 'MySQL'],
+    year: '2025',
+    url: 'https://github.com/Alxcccc/Todo-List-API',
+  },
+  {
+    title: 'Terminal Escape',
+    descriptor: 'C / Win32 / real-time input',
+    description: 'A compact Windows maze game built around real-time input, collision rules, and a focused C data model.',
+    focus: 'systems programming / input',
+    technologies: ['C', 'Windows API', 'MinGW'],
+    year: '2026',
+    url: 'https://github.com/Alxcccc/terminal-escape',
+  },
+];
+
+const featuredProject = projects.find((project) => project.featured) ?? projects[0];
+const supportingProjects = projects.filter((project) => project !== featuredProject);
+
+const timeline = [
+  { label: 'Education', value: 'Software Development Technician · SENA', period: '2023 — 2024' },
+  { label: 'Education', value: 'Software Engineering · Pascual Bravo', period: '2026 — present' },
+  { label: 'Based', value: 'Medellín, Colombia', period: 'Open to work' },
+];
+
+const contacts = [
+  { name: 'GitHub', handle: '@Alxcccc', url: 'https://github.com/Alxcccc', external: true },
+  { name: 'Email', handle: 'alecandres799@gmail.com', url: 'mailto:alecandres799@gmail.com', external: false },
+  { name: 'LinkedIn', handle: 'Alec Echavarría', url: 'https://www.linkedin.com/in/alec-echavarría-78115824b', external: true },
+];
+---
+
+<Layout>
+  <main id="top">
+    <div class="content-card mx-3 my-3 md:mx-6 md:my-8 rounded-[2.5rem] bg-primary text-text-primary overflow-hidden shadow-[0_1px_2px_rgb(0_0_0/0.05),0_12px_40px_rgb(0_0_0/0.12)]">
+      <!-- Primary wrapper -->
+      <div class="page-band page-band-primary text-text-primary">
+        <div class="max-w-7xl mx-auto">
+          <!-- Header -->
+          <header class="px-3 pt-8 pb-4 md:px-5 md:pt-12" data-reveal>
+            <h1 class="font-serif font-light text-[clamp(2.25rem,10vw,8rem)] leading-[0.85] mb-4">
+              <div class="flex justify-between items-end gap-4">
+                <span>Al<i class="not-italic">e</i>c</span>
+                <span>Echavarr<i class="not-italic">í</i>a</span>
+              </div>
+            </h1>
+
+            <span class="block w-full mb-4 rounded-hairline" aria-hidden="true"></span>
+
+            <div class="flex flex-wrap justify-between gap-x-6 gap-y-2 text-xs md:text-sm tracking-[0.15em] text-text-primary/60">
+              <span>Software Engineer</span>
+              <span class="hidden md:block">Backend Development</span>
+              <a href="mailto:alecandres799@gmail.com" class="hidden md:block editorial-inline-link">Email</a>
+              <span>Medellín, Colombia</span>
+              <span class="hidden md:flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                Available
+              </span>
+            </div>
+          </header>
+
+          <!-- Intro / Hero -->
+          <section class="px-3 md:px-5 py-12 md:py-24" aria-labelledby="hero-title">
+            <p class="eyebrow mb-8 md:mb-12" data-reveal>Software systems / backend development</p>
+
+            <h2
+              id="hero-title"
+              class="font-serif font-light text-[clamp(2rem,7.5vw,6rem)] leading-[0.95] grid grid-cols-1 md:grid-cols-15 gap-x-6 gap-y-5 md:gap-x-8 md:gap-y-0"
+            >
+              <a href="#about" class="editorial-tile editorial-tile--about order-last md:order-none md:col-span-4 md:row-start-1 md:self-center" data-reveal aria-label="Go to About section">
+                <span>About</span>
+                <span class="editorial-tile-index" aria-hidden>01</span>
+              </a>
+              <span class="whitespace-nowrap md:col-start-5 md:col-span-7 md:row-start-1 md:text-center" data-reveal style="--reveal-delay: 70ms">Colombian</span>
+              <a href="#projects" class="editorial-tile editorial-tile--projects order-last md:order-none md:col-start-12 md:col-span-4 md:row-start-1 md:self-center" data-reveal style="--reveal-delay: 140ms" aria-label="Go to Projects section">
+                <span>Projects</span>
+                <span class="editorial-tile-index" aria-hidden>02</span>
+              </a>
+
+              <span class="hidden md:block md:col-span-full md:row-start-2 my-3 rounded-hairline" aria-hidden="true"></span>
+
+              <span class="whitespace-nowrap md:col-span-7 md:row-start-3" data-reveal style="--reveal-delay: 210ms">Software</span>
+              <span class="whitespace-nowrap md:col-start-9 md:col-span-7 md:row-start-3 md:text-right" data-reveal style="--reveal-delay: 280ms">Engineer</span>
+
+              <span class="hidden md:block md:col-span-full md:row-start-4 my-3 rounded-hairline" aria-hidden="true"></span>
+
+              <span class="whitespace-nowrap md:col-span-4 md:row-start-5" data-reveal style="--reveal-delay: 350ms">Based</span>
+              <a href="#contact" class="editorial-tile editorial-tile--contact order-last md:order-none md:col-start-5 md:col-span-4 md:row-start-5 md:self-center" data-reveal style="--reveal-delay: 420ms" aria-label="Go to Contact section">
+                <span>Contact</span>
+                <span class="editorial-tile-index" aria-hidden>03</span>
+              </a>
+              <span class="whitespace-nowrap md:col-start-9 md:col-span-7 md:row-start-5 md:text-right" data-reveal style="--reveal-delay: 490ms">in Medellín</span>
+
+              <span class="hidden md:block md:col-span-full md:row-start-6 mt-3 rounded-hairline" aria-hidden="true"></span>
+            </h2>
+
+            <div class="grid md:grid-cols-15 gap-6 items-start mt-14 md:mt-20" data-reveal style="--reveal-delay: 560ms">
+              <p class="md:col-span-7 text-sm md:text-base leading-relaxed text-text-primary/70 max-w-xl">
+                I build APIs, data models, and interfaces that stay understandable as they grow.
+              </p>
+              <p class="md:col-start-10 md:col-span-6 text-xs leading-relaxed tracking-wide text-text-primary/50 md:pt-1">
+                Python · Go · C · C#<br />
+                FastAPI · .NET · SQL
+              </p>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- Secondary wrapper -->
+      <div class="page-band page-band-secondary bg-secondary text-text-secondary">
+        <div class="max-w-7xl mx-auto">
+          <!-- Projects -->
+          <section id="projects" class="px-3 md:px-5 py-16 md:py-28" aria-labelledby="projects-title">
+            <div class="section-kicker section-kicker-dark mb-10" data-reveal>
+              <span>01</span>
+              <span>Selected work</span>
+              <span class="ml-auto hidden sm:inline">Open repositories</span>
+            </div>
+            <h2 id="projects-title" class="font-serif font-light text-[clamp(2.25rem,7vw,6rem)] leading-[0.9] mb-8 space-y-1" data-reveal>
+              <div class="grid md:grid-cols-15">
+                <span class="md:col-span-7">Selected</span>
+                <span class="md:col-span-7 md:col-start-9 text-right">systems</span>
+              </div>
+              <div class="text-center text-xl md:text-2xl text-text-secondary/50 mt-3">(2025 — 2026)</div>
+            </h2>
+            <p class="project-intro text-sm md:text-base leading-relaxed text-text-secondary/60 max-w-xl mb-14" data-reveal>
+              A small archive of systems work, selected for the decisions behind the code: boundaries, ownership, search, and real-time input.
+            </p>
+
+            <div class="project-feature reveal rounded-border rounded-border-end" data-reveal style="--reveal-delay: 90ms">
+              <div class="project-feature-copy">
+                <div class="project-feature-meta">
+                  <span>01 / Featured system</span>
+                  <span>{featuredProject.year}</span>
+                </div>
+                <h3 class="project-feature-title">
+                  {featuredProject.title}
+                  <span class="project-arrow" aria-hidden>↗</span>
+                </h3>
+                <p class="project-feature-descriptor">{featuredProject.descriptor}</p>
+                <p class="project-feature-description">{featuredProject.description}</p>
+                <dl class="project-feature-details rounded-border">
+                  <div>
+                    <dt>Focus</dt>
+                    <dd>{featuredProject.focus}</dd>
+                  </div>
+                  <div>
+                    <dt>Stack</dt>
+                    <dd>{featuredProject.technologies.join(' · ')}</dd>
+                  </div>
+                </dl>
+                <a href={featuredProject.url} target="_blank" rel="noreferrer" class="editorial-inline-link project-action" aria-label={`View ${featuredProject.title} repository on GitHub`}>GitHub repository <span aria-hidden>↗</span></a>
+              </div>
+              <div class="project-plate" aria-label="Expense Tracker architecture flow">
+                <span class="project-plate-label">Architecture</span>
+                <div class="project-flow">
+                  {featuredProject.diagram.map((step, index) => (
+                    <div class={`project-flow-step rounded-border${index === featuredProject.diagram.length - 1 ? ' rounded-border-end' : ''}`}>
+                      <span>0{index + 1}</span>
+                      <strong>{step}</strong>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="project-index grid grid-cols-1 md:grid-cols-15" aria-label="Supporting systems">
+              {supportingProjects.map((p, index) => {
+                const positions = [
+                  'md:col-span-6',
+                  'md:col-start-9 md:col-span-6',
+                  'md:col-start-4 md:col-span-7',
+                ];
+                return (
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    class={`project-card reveal ${positions[index] ?? 'md:col-span-7'}`}
+                    style={`--reveal-delay: ${(index + 2) * 90}ms`}
+                    aria-label={`View ${p.title} repository on GitHub`}
+                  >
+                    <div>
+                      <div class="project-card-index">0{index + 2}</div>
+                      <h3 class="project-card-title">{p.title}<span class="project-arrow" aria-hidden>↗</span></h3>
+                    </div>
+                    <div class="project-card-footer">
+                      <div>
+                        <div class="project-card-meta">{p.descriptor}</div>
+                        <div class="project-card-tags">{p.technologies.join(' · ')}</div>
+                      </div>
+                      <span class="project-card-year">{p.year}</span>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+
+          <!-- About -->
+          <section id="about" class="px-3 md:px-5 py-16 md:py-28" aria-labelledby="about-title">
+            <div class="section-kicker section-kicker-dark mb-10" data-reveal>
+              <span>02</span>
+              <span>Approach</span>
+              <span class="ml-auto hidden sm:inline">How I work</span>
+            </div>
+            <div class="md:grid md:grid-cols-15 gap-6">
+              <div class="md:col-span-5 mb-10 md:mb-0" data-reveal>
+                <h2 id="about-title" class="font-serif italic font-light text-[clamp(1.75rem,5vw,3rem)] leading-tight">
+                  Structure should make complexity feel <em class="not-italic">quiet.</em>
+                </h2>
+              </div>
+              <div class="md:col-start-7 md:col-span-8 space-y-7" data-reveal>
+                <p class="text-sm md:text-base leading-relaxed text-text-primary/80 max-w-2xl">
+                  I work at the boundary between structure and use: APIs, data models, and interfaces that remain legible to the people who maintain them.
+                </p>
+                <p class="text-sm md:text-base leading-relaxed text-text-primary/60 max-w-2xl">
+                  The details matter most where nobody notices them: naming, boundaries, failure states, and the small decisions that keep a product dependable.
+                </p>
+                <dl class="about-details grid sm:grid-cols-2 gap-x-8 gap-y-6 pt-2">
+                  <div>
+                    <dt>Focus</dt>
+                    <dd>Backend systems</dd>
+                  </div>
+                  <div>
+                    <dt>Tools</dt>
+                    <dd>Python · Go · C · C# · SQL</dd>
+                  </div>
+                </dl>
+                <div class="space-y-3 pt-3">
+                  {timeline.map((item, i) => (
+                    <div class={`about-record rounded-border${i === timeline.length - 1 ? ' rounded-border-end' : ''}`}>
+                      <span class="about-record-label">{item.label}</span>
+                      <span class="font-medium">{item.value}</span>
+                      <span class="about-record-period">{item.period}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Dark band: contact + footer -->
+      <div class="page-band page-band-dark">
+        <div class="max-w-7xl mx-auto">
+          <!-- Contact -->
+          <section id="contact" class="px-3 md:px-5 py-16 md:py-28" aria-labelledby="contact-title">
+            <div class="section-kicker mb-10" data-reveal>
+              <span>03</span>
+              <span>Contact</span>
+              <span class="ml-auto hidden sm:inline">Open to thoughtful work</span>
+            </div>
+            <h2 id="contact-title" class="font-serif font-light text-[clamp(2rem,6.5vw,6rem)] leading-[0.95] max-w-5xl mb-8" data-reveal>
+              Let’s make the difficult part <em>legible.</em>
+            </h2>
+            <p class="contact-body text-base md:text-xl leading-relaxed max-w-2xl mb-14" data-reveal>
+              Open to internships, thoughtful collaborations, and freelance work where the problem is meaningful and the details matter.
+            </p>
+
+            <div class="contact-index">
+              {contacts.map((c, i) => (
+                <a
+                  href={c.url}
+                  target={c.external ? '_blank' : undefined}
+                  rel={c.external ? 'noreferrer' : undefined}
+                  class={`contact-row reveal rounded-border${i === contacts.length - 1 ? ' rounded-border-end' : ''}`}
+                >
+                  <span class="contact-row-name">{c.name}</span>
+                  <span class="contact-row-handle">{c.handle}</span>
+                  <span class="contact-arrow" aria-hidden>↗</span>
+                  {c.external && <span class="sr-only">(opens in a new tab)</span>}
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <!-- Footer -->
+          <footer class="px-3 md:px-5 py-8 flex flex-wrap justify-between gap-x-4 gap-y-2 text-xs md:text-sm text-text-secondary/40">
+            <a href="#top" class="hover:text-accent transition-colors">Back to top</a>
+            <span>Alec Echavarría / Software Engineer</span>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <!-- Theme toggle floating button -->
+    <button
+      class="theme-toggle fixed bottom-6 right-6 z-50 w-10 h-10 flex items-center justify-center rounded-full border border-text-primary/10"
+      onclick="toggleTheme()"
+      aria-label="Toggle theme"
+      aria-pressed="false"
+      title="Toggle dark/light mode"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+        <path class="sun" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        <path class="moon" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+    </button>
+  </main>
+</Layout>
