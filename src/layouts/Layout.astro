@@ -44,14 +44,41 @@ const { title = 'Alec Echavarría — Software Engineer' } = Astro.props;
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Alec Echavarría — Software Engineer",
-      "description": "Alec Echavarría is a software engineer focused on backend systems, full-stack web development, and careful digital experiences.",
-      "url": "https://a1ec.site",
-      "author": {
-        "@type": "Person",
-        "name": "Alec Echavarría"
-      }
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://a1ec.site/#person",
+          "name": "Alec Echavarría",
+          "jobTitle": "Software Engineer",
+          "url": "https://a1ec.site",
+          "email": "mailto:alecandres799@gmail.com",
+          "knowsAbout": ["Python", "Go", "C", "C#", "FastAPI", ".NET", "SQL"],
+          "sameAs": [
+            "https://github.com/Alxcccc",
+            "https://www.linkedin.com/in/alec-echavarría-78115824b"
+          ],
+          "alumniOf": [
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "SENA"
+            },
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "Institución Universitaria Pascual Bravo"
+            }
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://a1ec.site/#webpage",
+          "name": "Alec Echavarría — Software Engineer",
+          "description": "Alec Echavarría is a software engineer focused on backend systems, full-stack web development, and careful digital experiences.",
+          "url": "https://a1ec.site",
+          "inLanguage": "en",
+          "about": { "@id": "https://a1ec.site/#person" },
+          "author": { "@id": "https://a1ec.site/#person" }
+        }
+      ]
     }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -56,6 +56,25 @@ const contacts = [
   { name: 'Email', handle: 'alecandres799@gmail.com', url: 'mailto:alecandres799@gmail.com', external: false },
   { name: 'LinkedIn', handle: 'Alec Echavarría', url: 'https://www.linkedin.com/in/alec-echavarría-78115824b', external: true },
 ];
+
+const projectLanguages = {
+  'Expense Tracker': 'Python',
+  'Blogging Platform': 'Python',
+  'Todo List': 'Python',
+  'Terminal Escape': 'C',
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@graph': projects.map((project) => ({
+    '@type': 'SoftwareSourceCode',
+    name: project.title,
+    description: project.description,
+    codeRepository: project.url,
+    programmingLanguage: projectLanguages[project.title] ?? project.technologies[0],
+    author: { '@id': 'https://a1ec.site/#person' },
+  })),
+};
 ---
 
 <Layout>
@@ -328,4 +347,5 @@ const contacts = [
       </svg>
     </button>
   </main>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(softwareSchema)} />
 </Layout>
