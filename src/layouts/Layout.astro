@@ -1,4 +1,9 @@
 ---
+import '@fontsource/dm-sans/latin-400.css';
+import '@fontsource/dm-sans/latin-500.css';
+import '@fontsource/playfair-display/latin-400.css';
+import '@fontsource/playfair-display/latin-400-italic.css';
+
 const { title = 'Alec Echavarría — Software Engineer' } = Astro.props;
 ---
 
@@ -81,9 +86,6 @@ const { title = 'Alec Echavarría — Software Engineer' } = Astro.props;
       ]
     }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
     <style is:global>
       :root {
         --bg-primary: 237 237 233;
@@ -707,10 +709,25 @@ const { title = 'Alec Echavarría — Software Engineer' } = Astro.props;
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
         const revealItems = document.querySelectorAll('[data-reveal], .reveal');
-        html.classList.add('motion-ready');
-        if (prefersReducedMotion.matches || !('IntersectionObserver' in window)) {
-          revealItems.forEach((item) => item.classList.add('is-visible'));
-        } else {
+
+        // Elements already inside the initial viewport must be visible at first
+        // paint (LCP), so mark them before the hidden state takes effect.
+        function isInViewport(el) {
+          const rect = el.getBoundingClientRect();
+          return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+
+        revealItems.forEach((item) => {
+          if (prefersReducedMotion.matches || !('IntersectionObserver' in window) || isInViewport(item)) {
+            item.classList.add('is-visible');
+          }
+        });
+
+        requestAnimationFrame(() => {
+          html.classList.add('motion-ready');
+        });
+
+        if (!prefersReducedMotion.matches && 'IntersectionObserver' in window) {
           const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach((entry) => {
               if (!entry.isIntersecting) return;
@@ -718,7 +735,9 @@ const { title = 'Alec Echavarría — Software Engineer' } = Astro.props;
               observer.unobserve(entry.target);
             });
           }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-          revealItems.forEach((item) => revealObserver.observe(item));
+          revealItems.forEach((item) => {
+            if (!item.classList.contains('is-visible')) revealObserver.observe(item);
+          });
         }
 
         // Expose toggle function globally

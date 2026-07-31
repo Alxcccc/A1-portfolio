@@ -86,10 +86,10 @@ const softwareSchema = {
           <!-- Header -->
           <header class="px-3 pt-8 pb-4 md:px-5 md:pt-12" data-reveal>
             <h1 class="font-serif font-light text-[clamp(2.25rem,10vw,8rem)] leading-[0.85] mb-4">
-              <div class="flex justify-between items-end gap-4">
+              <span class="flex justify-between items-end gap-4">
                 <span>Al<i class="not-italic">e</i>c</span>
                 <span>Echavarr<i class="not-italic">í</i>a</span>
-              </div>
+              </span>
             </h1>
 
             <span class="block w-full mb-4 rounded-hairline" aria-hidden="true"></span>
@@ -166,11 +166,11 @@ const softwareSchema = {
               <span class="ml-auto hidden sm:inline">Open repositories</span>
             </div>
             <h2 id="projects-title" class="font-serif font-light text-[clamp(2.25rem,7vw,6rem)] leading-[0.9] mb-8 space-y-1" data-reveal>
-              <div class="grid md:grid-cols-15">
+              <span class="grid md:grid-cols-15">
                 <span class="md:col-span-7">Selected</span>
                 <span class="md:col-span-7 md:col-start-9 text-right">systems</span>
-              </div>
-              <div class="text-center text-xl md:text-2xl text-text-secondary/50 mt-3">(2025 — 2026)</div>
+              </span>
+              <span class="block text-center text-xl md:text-2xl text-text-secondary/50 mt-3">(2025 — 2026)</span>
             </h2>
             <p class="project-intro text-sm md:text-base leading-relaxed text-text-secondary/60 max-w-xl mb-14" data-reveal>
               A small archive of systems work, selected for the decisions behind the code: boundaries, ownership, search, and real-time input.
@@ -200,7 +200,7 @@ const softwareSchema = {
                 </dl>
                 <a href={featuredProject.url} target="_blank" rel="noreferrer" class="editorial-inline-link project-action" aria-label={`View ${featuredProject.title} repository on GitHub`}>GitHub repository <span aria-hidden>↗</span></a>
               </div>
-              <div class="project-plate" aria-label="Expense Tracker architecture flow">
+              <div class="project-plate" role="group" aria-label="Expense Tracker architecture flow">
                 <span class="project-plate-label">Architecture</span>
                 <div class="project-flow">
                   {featuredProject.diagram.map((step, index) => (
@@ -213,7 +213,7 @@ const softwareSchema = {
               </div>
             </div>
 
-            <div class="project-index grid grid-cols-1 md:grid-cols-15" aria-label="Supporting systems">
+            <div class="project-index grid grid-cols-1 md:grid-cols-15" role="group" aria-label="Supporting systems">
               {supportingProjects.map((p, index) => {
                 const positions = [
                   'md:col-span-6',
