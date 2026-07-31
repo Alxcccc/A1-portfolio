@@ -1,0 +1,16 @@
+{
+  "name": "Alec Echavarría — Software Engineer",
+  "short_name": "Alec Echavarría",
+  "description": "Software engineer focused on backend systems, full-stack web development, and careful digital experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#EDEDE9",
+  "theme_color": "#AD2831",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
